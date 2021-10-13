@@ -14,26 +14,28 @@ class _LoginPageState extends State<LoginPage> {
           body: Center(
         child: Column(
           children: [
-            Flexible(
+            Flexible(   //se define el logo
               child: Image(
-                image: NetworkImage(
-                  'https://www.crearlogogratisonline.com/images/crearlogogratis_1024x1024_01.png',
+                image: AssetImage(
+                  'images/crearlogo.png',
                 ),
-                width: 150.0,
+                width: 100.0,
               ),
             ),
+            SizedBox(height: 10.0,width: double.infinity,),//se define nombre de la app
+            Text('AVJujuy',style: TextStyle(color: Colors.black,fontSize: 25.0),),
             SizedBox(
               height: 15.0,
             ),
-            _userTextField(),
+            _userTextField(),//correo electronico
             SizedBox(
               height: 15.0,
             ),
-            _passwordTextField(),
+            _passwordTextField(),//contaseña
             SizedBox(
               height: 15.0,
             ),
-            _buttonLogin(),
+            _buttonLogin(),//boton ingresar
             SizedBox(
               height: 15.0,
             ),
@@ -58,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
           decoration: InputDecoration(
               icon: Icon(Icons.email),
               hintText: 'ejemplo@correo.com',
-              labelText: 'Correo electronico'),
+              labelText: 'Correo electrónico'),
           onChanged: (value) {},
         ),
       );
@@ -74,9 +76,9 @@ class _LoginPageState extends State<LoginPage> {
           keyboardType: TextInputType.emailAddress,
           obscureText: true,
           decoration: InputDecoration(
-              icon: Icon(Icons.email),
-              hintText: 'Contrasena',
-              labelText: 'Contrasena'),
+              icon: Icon(Icons.lock_outline),
+              hintText: 'Contraseña',
+              labelText: 'Contraseña'),
           onChanged: (value) {},
         ),
       );
