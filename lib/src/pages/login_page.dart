@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sign_button/sign_button.dart';
 
 class LoginPage extends StatefulWidget {
   static String id = 'login_page';
@@ -18,32 +19,36 @@ class _LoginPageState extends State<LoginPage> {
               child: Image(
                 image: AssetImage(
                   'images/crearlogo.png',
+                  
                 ),
-                width: 100.0,
+                width: 150.0,
+                height: 180.0,
               ),
             ),
             SizedBox(height: 10.0,width: double.infinity,),//se define nombre de la app
-            Text('AVJujuy',style: TextStyle(color: Colors.black,fontSize: 25.0),),
+            Text('AVJujuy',style: TextStyle(fontFamily: 'Architects Daughter', color: Colors.black,fontSize: 45.0,),),
             SizedBox(
-              height: 15.0,
+              height: 10.0,
             ),
             _userTextField(),//correo electronico
             SizedBox(
-              height: 15.0,
+              height: 20.0,
             ),
             _passwordTextField(),//contaseña
             SizedBox(
-              height: 15.0,
+              height: 25.0,
             ),
             _buttonLogin(),//boton ingresar
             SizedBox(
               height: 15.0,
             ),
-            Text('registrarse'),
-            SizedBox(
-              height: 20.0,
-            ),
+            Text('ingresar con'),
             _redesSociales(),
+            SizedBox(
+              height: 30.0,
+            ),
+            Text('Aún no esta Registrado?'),
+            _buttonRegister(),//boton ingresar
           ],
         ),
       )),
@@ -93,7 +98,31 @@ class _LoginPageState extends State<LoginPage> {
           icon: Icon(
             Icons.input_outlined,
           ),
-          label: Text('Ingresar'));
+          label: Text('Ingresar'),
+           style: ElevatedButton.styleFrom(
+            fixedSize: Size(200, 30),
+            primary: Colors.green.shade500,
+            shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50))
+          ));
+    });
+  }
+
+  Widget _buttonRegister() {
+    return StreamBuilder(
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+      return ElevatedButton.icon(
+          onPressed: () {},
+          icon: Icon(
+            Icons.app_registration,
+          ),
+          label: Text('Registrarse'),
+          style: ElevatedButton.styleFrom(
+            fixedSize: Size(200, 30),
+            primary: Colors.green.shade500,
+            shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50))
+          )); 
     });
   }
 
@@ -103,9 +132,19 @@ class _LoginPageState extends State<LoginPage> {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.facebook)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.facebook)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.facebook)),
+          //IconButton(onPressed: () {}, icon: Icon(Icons.facebook)),
+          SignInButton.mini(
+            buttonType: ButtonType.facebook,
+            onPressed: () {},
+          ),
+          SignInButton.mini(
+            buttonType: ButtonType.google,
+            onPressed: () {},
+          ),
+          SignInButton.mini(
+            buttonType: ButtonType.instagram,
+            onPressed: () {},
+          ),
         ],
       );
     });
