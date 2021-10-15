@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/src/pages/registro_page.dart';
+import 'package:flutter_application_1/src/transiciones/fade_transition.dart';
 import 'package:sign_button/sign_button.dart';
 
 class LoginPage extends StatefulWidget {
@@ -12,46 +14,57 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+          backgroundColor: Colors.amber.shade300, //COLOR DE FONDO
           body: Center(
-        child: Column(
-          children: [
-            Flexible(   //se define el logo
-              child: Image(
-                image: AssetImage(
-                  'images/crearlogo.png',
-                  
+            child: Column(
+              children: [
+                Flexible(
+                  //se define el logo
+                  child: Image(
+                    image: AssetImage(
+                      'images/crearlogo.png',
+                    ),
+                    width: 150.0,
+                    height: 180.0,
+                  ),
                 ),
-                width: 150.0,
-                height: 180.0,
-              ),
+                SizedBox(
+                  height: 10.0,
+                  width: double.infinity,
+                ), //se define nombre de la app
+                Text(
+                  'AVJujuy',
+                  style: TextStyle(
+                    fontFamily: 'Architects Daughter',
+                    color: Colors.black,
+                    fontSize: 45.0,
+                  ),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                _userTextField(), //correo electronico
+                SizedBox(
+                  height: 20.0,
+                ),
+                _passwordTextField(), //contaseña
+                SizedBox(
+                  height: 25.0,
+                ),
+                _buttonLogin(), //boton ingresar
+                SizedBox(
+                  height: 15.0,
+                ),
+                Text('ingresar con'),
+                _redesSociales(),
+                SizedBox(
+                  height: 30.0,
+                ),
+                Text('Aún no esta Registrado?'),
+                _buttonRegister(), //boton ingresar
+              ],
             ),
-            SizedBox(height: 10.0,width: double.infinity,),//se define nombre de la app
-            Text('AVJujuy',style: TextStyle(fontFamily: 'Architects Daughter', color: Colors.black,fontSize: 45.0,),),
-            SizedBox(
-              height: 10.0,
-            ),
-            _userTextField(),//correo electronico
-            SizedBox(
-              height: 20.0,
-            ),
-            _passwordTextField(),//contaseña
-            SizedBox(
-              height: 25.0,
-            ),
-            _buttonLogin(),//boton ingresar
-            SizedBox(
-              height: 15.0,
-            ),
-            Text('ingresar con'),
-            _redesSociales(),
-            SizedBox(
-              height: 30.0,
-            ),
-            Text('Aún no esta Registrado?'),
-            _buttonRegister(),//boton ingresar
-          ],
-        ),
-      )),
+          )),
     );
   }
 
@@ -99,12 +112,11 @@ class _LoginPageState extends State<LoginPage> {
             Icons.input_outlined,
           ),
           label: Text('Ingresar'),
-           style: ElevatedButton.styleFrom(
-            fixedSize: Size(200, 30),
-            primary: Colors.green.shade500,
-            shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50))
-          ));
+          style: ElevatedButton.styleFrom(
+              fixedSize: Size(200, 30),
+              primary: Colors.green.shade500,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50))));
     });
   }
 
@@ -112,17 +124,20 @@ class _LoginPageState extends State<LoginPage> {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot) {
       return ElevatedButton.icon(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              Fade_Transition(RegistroPage()),
+            );
+          },
           icon: Icon(
             Icons.app_registration,
           ),
           label: Text('Registrarse'),
           style: ElevatedButton.styleFrom(
-            fixedSize: Size(200, 30),
-            primary: Colors.green.shade500,
-            shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50))
-          )); 
+              fixedSize: Size(200, 30),
+              primary: Colors.green.shade500,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50))));
     });
   }
 

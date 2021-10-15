@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/pages/login_page.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/src/pages/registro_page.dart';
 
 void main() {
   //SystemChrome.setEnabledSystemUIOverlays([]);
@@ -12,8 +13,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Material App2',
-      home: Scaffold(body: LoginPage()),
+
+      title: 'Material App',
+      //home: Scaffold(body: LoginPage()),
+      home: LoginPage(),
+      routes: <String, WidgetBuilder>{
+        '/login': (BuildContext context) => LoginPage(),
+        '/registro': (BuildContext context) => RegistroPage()
+      },
     );
   }
 }
