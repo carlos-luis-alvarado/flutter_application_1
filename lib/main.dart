@@ -3,6 +3,7 @@ import 'package:flutter_application_1/src/pages/login_page.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/src/pages/registro_page.dart';
 
+
 void main() {
   //SystemChrome.setEnabledSystemUIOverlays([]);
   runApp(MyApp());
@@ -15,8 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 
       title: 'Material App',
-      //home: Scaffold(body: LoginPage()),
-      home: LoginPage(),
+      home: Scaffold(body: LoginPage()),
       routes: <String, WidgetBuilder>{
         '/login': (BuildContext context) => LoginPage(),
         '/registro': (BuildContext context) => RegistroPage()
