@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/pages/login_page.dart';
-import 'package:sign_button/sign_button.dart';
 import 'package:flutter_application_1/src/transiciones/fade_transition.dart';
 
 
 class RegistroPage extends StatefulWidget {
+  //const RegistroPage ({Key? key}):super(key:key);
   static String id = 'registro_page';
   @override
   _RegistroPageState createState() => _RegistroPageState();
 }
-
+//VIDEO 8 MIN 6
 class _RegistroPageState extends State<RegistroPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          body: Center(
+        backgroundColor: Colors.amber.shade300,
+        body: Center(
         child: Column(
           children: [
-            Flexible(   //se define el logo
+            const Flexible(   //se define el logo
               child: Image(
                 image: AssetImage(
                   'images/crearlogo.png',
@@ -28,24 +29,24 @@ class _RegistroPageState extends State<RegistroPage> {
                 height: 180.0,
               ),
             ),
-            SizedBox(height: 10.0,width: double.infinity,),//se define nombre de la app
-            Text('AVJujuy',style: TextStyle(fontFamily: 'Architects Daughter', color: Colors.black,fontSize: 45.0,),),
-            SizedBox(
+            const SizedBox(height: 10.0,width: double.infinity,),//se define nombre de la app
+            const Text('AVJujuy',style: TextStyle(fontFamily: 'Architects Daughter', color: Colors.black,fontSize: 45.0,),),
+            const SizedBox(
               height: 10.0,
             ),
             _userTextField(),//correo electronico
-            SizedBox(
+            const SizedBox(
               height: 20.0,
             ),
             _passwordTextField(),//contaseña
-            SizedBox(
+            const SizedBox(
               height: 25.0,
             ),
             _buttonRegister(),//boton registrar
-            SizedBox(
+            const SizedBox(
               height: 45.0,
             ),
-            Text('Ya tiene una Cuenta?'),
+            const Text('Ya tiene una Cuenta?'),
             _buttonLogin(),//boton ingresar
           ],
         ),
@@ -114,7 +115,11 @@ class _RegistroPageState extends State<RegistroPage> {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot) {
       return ElevatedButton.icon(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              Fade_Transition(RegistroPage()),
+            );
+          },
           icon: Icon(
             Icons.app_registration,
           ),

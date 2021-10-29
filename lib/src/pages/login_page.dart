@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/pages/registro_page.dart';
+import 'package:flutter_application_1/src/navigation/routes.dart';
+import 'package:flutter_application_1/src/pages/Inicio_juego.dart';
 import 'package:flutter_application_1/src/transiciones/fade_transition.dart';
 import 'package:sign_button/sign_button.dart';
+import 'package:flutter_meedu/router.dart' as router;
 
 class LoginPage extends StatefulWidget {
+  //const LoginPage({Key? key}): super(key:key);
   static String id = 'login_page';
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -18,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
           body: Center(
             child: Column(
               children: [
-                Flexible(
+                const Flexible(
                   //se define el logo
                   child: Image(
                     image: AssetImage(
@@ -28,11 +31,11 @@ class _LoginPageState extends State<LoginPage> {
                     height: 180.0,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                   width: double.infinity,
                 ), //se define nombre de la app
-                Text(
+                const Text(
                   'AVJujuy',
                   style: TextStyle(
                     fontFamily: 'Architects Daughter',
@@ -40,27 +43,27 @@ class _LoginPageState extends State<LoginPage> {
                     fontSize: 45.0,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
                 _userTextField(), //correo electronico
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
                 ),
                 _passwordTextField(), //contaseña
-                SizedBox(
+                const SizedBox(
                   height: 25.0,
                 ),
                 _buttonLogin(), //boton ingresar
-                SizedBox(
+                const SizedBox(
                   height: 15.0,
                 ),
-                Text('ingresar con'),
+                const Text('ingresar con'),
                 _redesSociales(),
-                SizedBox(
+                const SizedBox(
                   height: 30.0,
                 ),
-                Text('Aún no esta Registrado?'),
+                const Text('Aún no esta Registrado?'),
                 _buttonRegister(), //boton ingresar
               ],
             ),
@@ -72,10 +75,10 @@ class _LoginPageState extends State<LoginPage> {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot) {
       return Container(
-        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: TextField(
           keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               icon: Icon(Icons.email),
               hintText: 'ejemplo@correo.com',
               labelText: 'Correo electrónico'),
@@ -89,11 +92,11 @@ class _LoginPageState extends State<LoginPage> {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot) {
       return Container(
-        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: TextField(
           keyboardType: TextInputType.emailAddress,
           obscureText: true,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               icon: Icon(Icons.lock_outline),
               hintText: 'Contraseña',
               labelText: 'Contraseña'),
@@ -107,13 +110,17 @@ class _LoginPageState extends State<LoginPage> {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot) {
       return ElevatedButton.icon(
-          onPressed: () {},
-          icon: Icon(
+          onPressed: () {
+            Navigator.of(context).push(
+              Fade_Transition(InicioJuego()),
+            );
+          },
+          icon: const Icon(
             Icons.input_outlined,
           ),
-          label: Text('Ingresar'),
+          label: const Text('Ingresar'),
           style: ElevatedButton.styleFrom(
-              fixedSize: Size(200, 30),
+              fixedSize: const Size(200, 30),
               primary: Colors.green.shade500,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50))));
@@ -124,15 +131,16 @@ class _LoginPageState extends State<LoginPage> {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot) {
       return ElevatedButton.icon(
-          onPressed: () {
-            Navigator.of(context).push(
+          onPressed: () =>router.pushNamed(Routes.REGISTER),
+            
+           /* Navigator.of(context).push(
               Fade_Transition(RegistroPage()),
             );
-          },
-          icon: Icon(
+          },*/
+          icon: const Icon(
             Icons.app_registration,
           ),
-          label: Text('Registrarse'),
+          label: const Text('Registrarse'),
           style: ElevatedButton.styleFrom(
               fixedSize: Size(200, 30),
               primary: Colors.green.shade500,
