@@ -229,7 +229,7 @@ class _quizpageState extends State<quizpage> {
       },
       child: Scaffold(
         backgroundColor: Colors.green.shade400,
-        //backgroundColor: Colors.deepOrange.shade400,
+        //backgroundColor: Colors.amber.shade200,
         body: Column(
           children: <Widget>[
             Expanded(
@@ -239,6 +239,7 @@ class _quizpageState extends State<quizpage> {
                 margin: EdgeInsets.all(40.0),
                 decoration: BoxDecoration(
                   color: Colors.amber.shade400,
+                  //color: Colors.orange.shade400,
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.circular(25.0),
                 ),
@@ -263,6 +264,7 @@ class _quizpageState extends State<quizpage> {
                   margin: EdgeInsets.all(40.0),
                   decoration: BoxDecoration(
                     color: Colors.amber.shade400,
+                    //color: Colors.amber.shade200,
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(30.0),
                   ),
