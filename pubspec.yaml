@@ -89,6 +89,10 @@ flutter:
      - family: Architects Daughter
        fonts:
          - asset: assets\fonts\ArchitectsDaughter-Regular.ttf
+    
+     - family: Ceviche One
+       fonts:
+         - asset: assets\fonts\CevicheOne-Regular.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
