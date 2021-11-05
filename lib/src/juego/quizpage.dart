@@ -95,7 +95,8 @@ class _quizpageState extends State<quizpage> {
     var distinctIds = [];
     var rand = new Random();
     for (int i = 0;;) {
-      distinctIds.add(rand.nextInt(5) +
+      // cambiar valor de next int cuando aumente las preguntas
+      distinctIds.add(rand.nextInt(9) +
           1); //si o si tiene que ser mas uno para que no nos devuelva el valor 0
       random_array = distinctIds.toSet().toList(); // solo entre 1 y 5
       if (random_array.length < 5) {
@@ -246,6 +247,7 @@ class _quizpageState extends State<quizpage> {
                 alignment: Alignment.center,
                 child: Text(
                   mydata[0][i.toString()],
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
