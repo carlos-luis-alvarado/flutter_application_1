@@ -1,20 +1,24 @@
 [
     {
-        "1": "Donde se encuentra el cerro de 7 colores ?",
-        "2": "Donde se encuentra el hornocal ?",
-        "3": "Cual de los departamentos no pertenece a la quebrada? ?",
-        "4": "donde se hace festeja el desentierro de mojones de 1ero de enero ?",
-        "5": "en que més del año se hace ofrendas a la tierra?"
+        "1": "Donde se encuentra el Cerro de 7 Colores",
+        "2": "Donde se encuentra el Hornocal",
+        "3": "Cual de los siguientes departamentos no pertenece a la Quebrada de Humahuaca",
+        "4": "Donde se festeja el desentierro de mojones el 1 de Enero",
+        "5": "En que mes se dan ofrendas a la Pachamama",
+        "6": "En qué localidad se encuentra el monolito que señala el Trópico de Capricornio",
+        "7": "Cual es el río más largo de la Quebrada de Humahuaca",
+        "8": "En la lengua aymara 'Purmamarca' significa",
+        "9": "Qué ritual dá comienzo al Carnaval en la Quebrada de Humahuaca"
     },
     {
         "1": {
-            "a": "abrapampa",
+            "a": "Abra Pampa",
             "b": "Purmamarca",
             "c": "Humahuaca",
             "d": "Tilcara"
         },
         "2": {
-            "a": "abrapampa",
+            "a": "Abra Pampa",
             "b": "Purmamarca",
             "c": "Humahuaca",
             "d": "Tilcara"
@@ -32,17 +36,45 @@
             "d": "Tilcara"
         },
         "5": {
-            "a": "febrero",
-            "b": "diciembre",
-            "c": "marzo",
-            "d": "agosto"
-        }
+            "a": "Febrero",
+            "b": "Diciembre",
+            "c": "Marzo",
+            "d": "Agosto"
+        },
+        "6": {
+            "a": "Huacalera",
+            "b": "Tumbaya",
+            "c": "Tilcara",
+            "d": "Volcán"
+        },
+        "7": {
+            "a": "Río Huasamayo",
+            "b": "Río Grande",
+            "c": "Río Xibi Xibi",
+            "d": "Río Humahuaca"
+        },
+        "8": {
+            "a": "Pueblo de cerros coloridos",
+            "b": "Pueblo de la tierra vírgen",
+            "c": "Pueblo de los vientos",
+            "d": "Pueblo marcado por el sol"
+        },
+        "9": {
+            "a": "Quema de Banderas",
+            "b": "Bajada de los Diablos",
+            "c": "Desentierro del Diablo",
+            "d": "Brindis con Saratoga"
+        } 
     },
     {
         "1": "Purmamarca",
         "2": "Humahuaca",
         "3": "Susques",
         "4": "Maimará",
-        "5": "agosto"
+        "5": "Agosto",
+        "6": "Huacalera",
+        "7": "Río Grande",
+        "8": "Pueblo de la tierra vírgen",
+        "9": "Desentierro del Diablo"
     }
 ]
