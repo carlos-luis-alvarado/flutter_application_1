@@ -43,6 +43,7 @@ dependencies:
   equatable: 
   flutter_bloc:
   flutter_meedu: "^4.1.0"
+  animate_do: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -93,6 +94,10 @@ flutter:
      - family: Ceviche One
        fonts:
          - asset: assets\fonts\CevicheOne-Regular.ttf
+
+     - family: Road Rage
+       fonts:
+         - asset: assets\fonts\RoadRage-Regular.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
