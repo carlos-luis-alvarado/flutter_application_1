@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/src/juego/resultpage.dart';
+import 'package:animate_do/animate_do.dart';
 
 class getjson extends StatelessWidget {
   // accept the langname as a parameter
