@@ -74,8 +74,8 @@ class _quizpageState extends State<quizpage> {
   bool disableAnswer = false;
   // varibale extra para iterar
   int j = 1;
-  int timer = 30;
-  String showtimer = "30";
+  int timer = 15;
+  String showtimer = "15";
   var random_array;
 
   Map<String, Color> btncolor = {
@@ -92,21 +92,19 @@ class _quizpageState extends State<quizpage> {
   // -----     CÓDIGO PARA GENERAR ARRAY AL ALEATORIO
 
   genrandomarray() {
-    var distinctIds = [];
-    var rand = new Random();
-    for (int i = 0;;) {
-      // cambiar valor de next int cuando aumente las preguntas
-      distinctIds.add(rand.nextInt(9) +
-          1); //si o si tiene que ser mas uno para que no nos devuelva el valor 0
-      random_array = distinctIds.toSet().toList(); // solo entre 1 y 5
-      if (random_array.length < 5) {
-        //podría elegir un array mas grande para que haya menos chance de que salga la misma
-        continue; //pregunta
-      } else {
-        break;
+    List<int> distinctIds = [];
+    var aleatorio = Random();
+    int numero;
+    
+    while (distinctIds.length < 5) {
+      // LA PRIMER PREGUNTA SIEMPRE ES LA MISMA. LA N° EN EL JSON, POR DEFECTO
+      // RANDOM DESDE 2 HASTA 9 (nextInt(max - min) + min)
+      numero = aleatorio.nextInt(8)+2;
+      if (!distinctIds.contains(numero)) {
+        distinctIds.add(numero);
       }
     }
-    print(random_array);
+    random_array = distinctIds;
   }
 
   // La función anterior no devuelve un rray con el orden de las preguntas
@@ -147,7 +145,7 @@ class _quizpageState extends State<quizpage> {
   //MUESTRA SIGUIENTE PREGUNTA
   void nextquestion() {
     canceltimer = false;
-    timer = 30; //inicializa el tiempo en 30 segundos
+    timer = 15; //inicializa el tiempo en 15 segundos
     setState(() {
       if (j < 5) {
         //controla que las preguntas sean solo 5
@@ -286,10 +284,8 @@ class _quizpageState extends State<quizpage> {
               flex: 1,
               child: Container(
                 padding: EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle
-                ),
+                decoration:
+                    BoxDecoration(color: Colors.white, shape: BoxShape.circle),
                 alignment: Alignment.topCenter,
                 child: Center(
                   child: Text(
