@@ -12,15 +12,15 @@ abstract class Routes{
   static const HOME1 = '/home1';
   static const GUARDAR = '/guardar';
 
-
-  static Route routes(RouteSettings routesSettings){
-    switch(routesSettings.name){
+  static Route routes(RouteSettings routesSettings) {
+    switch (routesSettings.name) {
       case LOGIN:
-        // return _buildRoute();
+      // return _buildRoute();
       default:
-          throw Exception('no existe');
+        throw Exception('no existe');
     }
   }
-  static MaterialPageRoute _buildRoute(Function build)=>
-      MaterialPageRoute(builder: (context)=>build(context));
+
+  static MaterialPageRoute _buildRoute(Function build) =>
+      MaterialPageRoute(builder: (context) => build(context));
 }

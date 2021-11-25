@@ -38,7 +38,7 @@ class _premiosState extends State<premios> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          '  ¡Reclama tu premio!',
+          '¡Reclama tu premio!',
           style: TextStyle(
             color: Colors.black,
             fontFamily: 'Architects Daughter',
@@ -135,6 +135,7 @@ showDialogFunc(context, images, nom, desc) {
                       height: 150,
                     ),
                   ),
+
                   const SizedBox(
                     height: 10,
                   ),
@@ -144,16 +145,19 @@ showDialogFunc(context, images, nom, desc) {
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       )),
+
                   const SizedBox(
                     height: 10,
                   ),
                   Text(
                     desc,
+
                     style: const TextStyle(
                       fontSize: 15,
                       color: Colors.black,
                     ),
                   ),
+
                   const SizedBox(
                     height: 10,
                   ),

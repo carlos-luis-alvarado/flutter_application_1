@@ -44,6 +44,7 @@ dependencies:
   flutter_meedu: "^4.1.0"
   freezed: ^0.15.0+1
   google_sign_in: ^5.2.1
+  animate_do: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -92,6 +93,14 @@ flutter:
      - family: Architects Daughter
        fonts:
          - asset: assets\fonts\ArchitectsDaughter-Regular.ttf
+    
+     - family: Ceviche One
+       fonts:
+         - asset: assets\fonts\CevicheOne-Regular.ttf
+
+     - family: Road Rage
+       fonts:
+         - asset: assets\fonts\RoadRage-Regular.ttf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

@@ -3,13 +3,11 @@ import 'package:flutter_application_1/src/navigation/routes.dart';
 import 'package:flutter_meedu/router.dart' as router;
 import 'package:flutter_application_1/src/widgets/card_swiper.dart';
 
-
 class InicioJuego extends StatefulWidget {
   static String id = 'inicia_juego';
   @override
   _InciaPageState createState() => _InciaPageState();
 }
-
   class _InciaPageState extends State<InicioJuego> {
     @override
     Widget build(BuildContext context) {

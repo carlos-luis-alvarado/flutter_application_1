@@ -238,6 +238,7 @@ class _quizpageState extends State<quizpage> {
                 margin: const EdgeInsets.all(40.0),
                 decoration: BoxDecoration(
                   color: Colors.amber.shade400,
+                  //color: Colors.orange.shade400,
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.circular(25.0),
                 ),
@@ -254,16 +255,17 @@ class _quizpageState extends State<quizpage> {
                 ),
               ),
             ),
-            Expanded(//REPRESENTA LAS PREGUNTAS
+            Expanded(
               flex: 6,
               child: AbsorbPointer(
                 absorbing: disableAnswer,
                 child: Container(
                   height: MediaQuery.of(context).size.height - 105.0,
-                  padding: const EdgeInsets.all(25.0),
-                  margin: const EdgeInsets.all(25.0),
+                  padding: EdgeInsets.all(25.0),
+                  margin: EdgeInsets.all(25.0),
                   decoration: BoxDecoration(
                     color: Colors.amber.shade400,
+                    //color: Colors.amber.shade200,
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(30.0),
                   ),
@@ -279,12 +281,12 @@ class _quizpageState extends State<quizpage> {
                 ),
               ),
             ),
-            Expanded(//REPRESENTA EL TEMPORIZADOR
+            Expanded(
               flex: 1,
               child: Container(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(10.0),
                 decoration:
-                    const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+                    BoxDecoration(color: Colors.white, shape: BoxShape.circle),
                 alignment: Alignment.topCenter,
                 child: Center(
                   child: Text(

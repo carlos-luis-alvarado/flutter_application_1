@@ -1,7 +1,6 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/data/estado_global/session_controller.dart';
 import 'package:flutter_application_1/src/juego/home1.dart';
-import 'package:flutter_meedu/flutter_meedu.dart';
 
 class resultpage extends StatefulWidget {
   int marks = 0;
@@ -13,9 +12,9 @@ class resultpage extends StatefulWidget {
 
 class _resultpageState extends State<resultpage> {
   List<String> images = [
-    "images/success.png",
     "images/puntos_altos.png",
     "images/puntos_bajos.png",
+    "images/puntos_medios.png"
   ];
 
   String message;
@@ -23,14 +22,14 @@ class _resultpageState extends State<resultpage> {
 
   @override
   void initState() {
-    if (marks < 20) {
-      image = images[2];
+    if (marks < 10) {
+      image = images[1];
       message = "Deberías esforzarte..\n" + "Puntos Obtenidos $marks";
-    } else if (marks < 35) {
-      image = images[1];
-      message = "Lo hiciste muy bien..\n" + "Puntos Obtenidos $marks";
+    } else if (marks < 20) {
+      image = images[2];
+      message = "Esta mal, pero no tan mal..\n" + "Puntos Obtenidos $marks";
     } else {
-      image = images[1];
+      image = images[0];
       message = "Lo hiciste muy bien..\n" + "Puntos Obtenidos $marks";
     }
     super.initState();
@@ -80,9 +79,11 @@ class _resultpageState extends State<resultpage> {
                         width: 300.0,
                         height: 300.0,
                         child: ClipRect(
-                          child: Image(
-                            image: AssetImage(
-                              image,
+                          child: ElasticIn(
+                            child: Image(
+                              image: AssetImage(
+                                image,
+                              ),
                             ),
                           ),
                         ),
@@ -90,17 +91,19 @@ class _resultpageState extends State<resultpage> {
                     ),
                     Padding(
                         padding: const EdgeInsets.symmetric(
-                          vertical: 5.0,
+                          vertical: 3.0,
                           horizontal: 15.0,
                         ),
                         child: Center(
-                          child: Text(
-                            message,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                              fontFamily: "Quando",
+                          child: ElasticInUp(
+                            child: Text(
+                              message,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 60.0,
+                                fontFamily: "Road Rage",
+                              ),
                             ),
                           ),
                         )),
@@ -113,7 +116,7 @@ class _resultpageState extends State<resultpage> {
           // parte final
 
           Expanded(
-            flex: 4,
+            flex: 3,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
