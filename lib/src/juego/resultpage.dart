@@ -1,52 +1,73 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/juego/home.dart';
+import 'package:flutter_application_1/src/data/estado_global/session_controller.dart';
+import 'package:flutter_application_1/src/juego/home1.dart';
+import 'package:flutter_meedu/flutter_meedu.dart';
 
 class resultpage extends StatefulWidget {
   int marks = 0;
-  resultpage({ Key? key , required this.marks}) : super(key : key);//cambiar required por @required
+  resultpage({Key? key, required this.marks})
+      : super(key: key); //cambiar required por @required
   @override
   _resultpageState createState() => _resultpageState(marks);
 }
 
 class _resultpageState extends State<resultpage> {
-
   List<String> images = [
     "images/success.png",
-    "images/good.png",
-    "images/bad.png",
+    "images/puntos_altos.png",
+    "images/puntos_bajos.png",
   ];
 
   String message;
   String image;
 
   @override
-  void initState(){
-    if(marks < 20){
+  void initState() {
+    if (marks < 20) {
       image = images[2];
-      message = "Deberías esforzarte..\n" + "Has anotado $marks";
-    }else if(marks < 35){
+      message = "Deberías esforzarte..\n" + "Puntos Obtenidos $marks";
+    } else if (marks < 35) {
       image = images[1];
-      message = "Puedes Hacerlo mejor..\n" + "Has anotado $marks";
-    }else{
-      image = images[0];
-      message = "Lo hiciste muy bien..\n" + "Has anotado $marks";
+      message = "Lo hiciste muy bien..\n" + "Puntos Obtenidos $marks";
+    } else {
+      image = images[1];
+      message = "Lo hiciste muy bien..\n" + "Puntos Obtenidos $marks";
     }
     super.initState();
   }
 
   int marks;
-  _resultpageState(this.marks,[this.image="images/good.png",this.message='bien hecho']);//cambios
+  _resultpageState(this.marks,
+      [this.image = "images/good.png", this.message = 'bien hecho']); //cambios
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Resultado",
-        ),
-      ),
+      backgroundColor: Colors.orangeAccent,
       body: Column(
         children: <Widget>[
+          // ENCABEZADO
+          const SizedBox(
+                  height: 40.0,
+                  width: double.infinity,
+                ),
+          Expanded(
+              flex: 2,
+              child: Container(
+                alignment: Alignment.center,
+                child: const Text(
+                  "RESULTADO",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                    fontSize: 48.0,
+                    fontFamily: "Ceviche One",
+                  ),
+                ),
+              )),
+
+          // PARTE CENTRAL
+
           Expanded(
             flex: 8,
             child: Material(
@@ -68,40 +89,60 @@ class _resultpageState extends State<resultpage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 5.0,
-                        horizontal: 15.0,
-                      ),
-                      child: Center(
-                      child: Text(
-                        message,
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontFamily: "Quando",
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 5.0,
+                          horizontal: 15.0,
                         ),
-                      ),
-                    )
-                    ),
+                        child: Center(
+                          child: Text(
+                            message,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                              fontFamily: "Quando",
+                            ),
+                          ),
+                        )),
                   ],
                 ),
               ),
-            ),            
+            ),
           ),
+
+          // parte final
+
           Expanded(
             flex: 4,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                OutlinedButton(// botón continuar
-                  onPressed: (){
+                OutlinedButton(
+                  // botón continuar
+
+                  style: OutlinedButton.styleFrom(
+                    primary: Colors.white,
+                    backgroundColor: Colors.teal,
+                    shadowColor: Colors.red,
+                    elevation: 10,
+                  ),
+
+                  onPressed: () {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => homepage(),
+                      builder: (context) => homepage1(),
                     ));
+                    //cuando se presione este boton guardamos los datos en nuestra bd
+                    /*Consumer(//rescatamos el correo del usuario como clave de la bd
+                        builder: (_,watch, __){
+                          final user=watch(sessionProvider).user!;
+                          return Text(user.email!);
+                        },
+                    );*/
                   },
-                  child: Text(
-                    "Continue",
+                  child: const Text(
+                    "VOLVER A JUGAR",
                     style: TextStyle(
-                      fontSize: 18.0,
+                      fontSize: 20.0,
                     ),
                   ),
                 )

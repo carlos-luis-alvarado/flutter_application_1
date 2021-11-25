@@ -1,11 +1,12 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/src/data/estado_global/session_controller.dart';
 import 'package:flutter_application_1/src/pages/splash_controller.dart';
 import 'package:flutter_meedu/flutter_meedu.dart';
 import 'package:flutter_meedu/router.dart'as router;
 final splashProvider= SimpleProvider(
-  (_)=>SplashController(),
+  (_)=>SplashController(sessionProvider.read),
   //autoDispose: true, //cuando se crea el splash controller
   //en ese momento se detecta la pantalla activa en la app
   //cuando es detruir se libera llama al método disposse 
@@ -25,9 +26,10 @@ class SplashPage extends StatelessWidget{
         }//elimino la pagina actual del stack y navego a login o inicio....
       },
       builder: (_,__){
-           return const Scaffold(
-              body: Center(
-                  child: CircularProgressIndicator(),
+           return Scaffold(
+              backgroundColor: Colors.amber.shade200,
+              body: const Center(
+                  child: CircularProgressIndicator(),  
               ),
            );
       }

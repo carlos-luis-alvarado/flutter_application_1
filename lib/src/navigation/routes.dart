@@ -5,8 +5,13 @@ abstract class Routes{
   static const LOGIN='/login';
   static const REGISTER='/register';
   static const INICIO='/inicio_juego';
-  static const HOME='/home';
+  //static const HOME='/home';
   static const QUIZ='/quiz';
+  static const PREMIOS = '/premios';
+  static const ENTREGAPREMIOS = '/entrega';
+  static const HOME1 = '/home1';
+  static const GUARDAR = '/guardar';
+
 
   static Route routes(RouteSettings routesSettings){
     switch(routesSettings.name){

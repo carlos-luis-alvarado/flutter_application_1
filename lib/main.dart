@@ -5,8 +5,6 @@ import 'package:flutter_meedu/router.dart' as router;
 import 'package:flutter_application_1/src/navigation/app_routes.dart';
 import 'package:flutter_application_1/src/navigation/routes.dart';
 
-
-
 void main() async {
   //SystemChrome.setEnabledSystemUIOverlays([]);
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,12 +27,6 @@ class MyApp extends StatelessWidget {
       ],
       routes: appRoutes,
 
-      //home: Scaffold(body: LoginPage()),
-     // routes: <String, WidgetBuilder>{
-     //   '/login': (BuildContext context) => LoginPage(),
-     //   '/registro': (BuildContext context) => RegistroPage(),
-     //   '/juego': (BuildContext context) => InicioJuego(),
-      //},
     );
   }
 }

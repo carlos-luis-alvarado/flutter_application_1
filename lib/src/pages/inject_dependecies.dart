@@ -5,10 +5,14 @@ import 'package:flutter_application_1/src/repository/auth_repository.dart';
 import 'package:flutter_application_1/src/repository/sing_up_repository.dart';
 import 'package:flutter_meedu/flutter_meedu.dart';
 import 'package:flutter_meedu/meedu.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 void injectDependencies(){
    Get.i.lazyPut<AuthRepository>(
-     ()=>AutenticationRepositoryI(FirebaseAuth.instance),
+     ()=>AutenticationRepositoryI(
+       firebaseAuth: FirebaseAuth.instance,
+       googleSignIn: GoogleSignIn(),
+       ),
    );
    Get.i.lazyPut<SingUpRepository>(
      ()=>SingUpRepositoryImp(

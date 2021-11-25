@@ -7,23 +7,23 @@ import 'package:flutter_application_1/src/juego/resultpage.dart';
 
 class getjson extends StatelessWidget {
   // accept the langname as a parameter
-  
+
   String langname;
   String assettoload;
-  getjson(this.langname,[this.assettoload="assets/Nivel 1.json"]);
-  
+  getjson(this.langname, [this.assettoload = "assets/Nivel 1.json"]);
+
   // se asigna a una varible el JSON correspondiente a cada nivel
   setasset() {
-    if (langname == "NIVEL 1") {
+    if (langname == "Quebrada") {
       assettoload = "assets/Nivel 1.json";
     } else if (langname == "NIVEL 2") {
-      assettoload = "assets/Nivel 1.json";
+      assettoload = "assets/Nivel 2.json";
     } else if (langname == "NIVEL 3") {
-      assettoload = "assets/Nivel 1.json";
+      assettoload = "assets/Nivel 3.json";
     } else if (langname == "NIVEL 4") {
-      assettoload = "assets/Nivel 1.json";
+      assettoload = "assets/Nivel 3.json";
     } else {
-      assettoload = "assets/Nivel 1.json";
+      assettoload = "assets/Nivel 2.json";
     }
   }
 
@@ -37,7 +37,7 @@ class getjson extends StatelessWidget {
       future:
           DefaultAssetBundle.of(context).loadString(assettoload, cache: false),
       builder: (context, snapshot) {
-        List mydata = json.decode(snapshot.data.toString());
+        var mydata = json.decode(snapshot.data.toString());
         if (mydata == null) {
           return const Scaffold(
             body: Center(
@@ -74,15 +74,15 @@ class _quizpageState extends State<quizpage> {
   bool disableAnswer = false;
   // varibale extra para iterar
   int j = 1;
-  int timer = 30;
-  String showtimer = "30";
+  int timer = 15;
+  String showtimer = "15";
   var random_array;
 
   Map<String, Color> btncolor = {
-    "a": Colors.indigoAccent,
-    "b": Colors.indigoAccent,
-    "c": Colors.indigoAccent,
-    "d": Colors.indigoAccent,
+    "a": Colors.indigo.shade400,
+    "b": Colors.indigo.shade400,
+    "c": Colors.indigo.shade400,
+    "d": Colors.indigo.shade400,
   };
 
   bool canceltimer = false;
@@ -91,20 +91,22 @@ class _quizpageState extends State<quizpage> {
   // para crear los elementos de la matriz, use aleatoriamente el módulo dart: math
   // -----     CÓDIGO PARA GENERAR ARRAY AL ALEATORIO
 
-  genrandomarray(){
-    var distinctIds = [];
-    var rand = new Random();
-      for (int i = 0; ;) {
-      distinctIds.add(rand.nextInt(5)+1);//si o si tiene que ser mas uno para que no nos devuelva el valor 0
-        random_array = distinctIds.toSet().toList();// solo entre 1 y 5
-        if(random_array.length < 5){//podría elegir un array mas grande para que haya menos chance de que salga la misma 
-          continue;                 //pregunta
-        }else{
-          break;
-        }
+  genrandomarray() {
+    List<int> distinctIds = [];
+    var aleatorio = Random();
+    int numero;
+    
+    while (distinctIds.length < 5) {
+      // LA PRIMER PREGUNTA SIEMPRE ES LA MISMA. LA N° EN EL JSON, POR DEFECTO
+      // RANDOM DESDE 2 HASTA 9 (nextInt(max - min) + min)
+      numero = aleatorio.nextInt(8)+2;
+      if (!distinctIds.contains(numero)) {
+        distinctIds.add(numero);
       }
-      print(random_array);
+    }
+    random_array = distinctIds;
   }
+
   // La función anterior no devuelve un rray con el orden de las preguntas
   // anulando la función initstate para iniciar el temporizador cuando se crea esta pantalla
   @override
@@ -123,7 +125,7 @@ class _quizpageState extends State<quizpage> {
   }
 
 //CONTROL DE CRONÓMETRO
-  void starttimer() async { 
+  void starttimer() async {
     const onesec = Duration(seconds: 1);
     Timer.periodic(onesec, (Timer t) {
       setState(() {
@@ -139,33 +141,38 @@ class _quizpageState extends State<quizpage> {
       });
     });
   }
- //MUESTRA SIGUIENTE PREGUNTA
+
+  //MUESTRA SIGUIENTE PREGUNTA
   void nextquestion() {
     canceltimer = false;
-    timer = 30; //inicializa el tiempo en 30 segundos
+    timer = 15; //inicializa el tiempo en 15 segundos
     setState(() {
-      if (j < 5) {//controla que las preguntas sean solo 5
+      if (j < 5) {
+        //controla que las preguntas sean solo 5
         i = random_array[j];
         j++;
       } else {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(//se dirige a la página de resultados
-          builder: (context) => resultpage(marks: marks),//le manda como parámetro el puntaje
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          //se dirige a la página de resultados
+          builder: (context) =>
+              resultpage(marks: marks), //le manda como parámetro el puntaje
         ));
       }
-     // muestra las preguntas
-      btncolor["a"] = Colors.indigoAccent;
-      btncolor["b"] = Colors.indigoAccent;
-      btncolor["c"] = Colors.indigoAccent;
-      btncolor["d"] = Colors.indigoAccent;
+      // muestra las preguntas
+      btncolor["a"] = Colors.indigo.shade400;
+      btncolor["b"] = Colors.indigo.shade400;
+      btncolor["c"] = Colors.indigo.shade400;
+      btncolor["d"] = Colors.indigo.shade400;
       disableAnswer = false;
     });
-    starttimer();//inicializa el cronómetro
+    starttimer(); //inicializa el cronómetro
   }
 
-  void checkanswer(String k) { //chequea que las preguntas 
+  void checkanswer(String k) {
+    //chequea que las preguntas
     if (mydata[2][i.toString()] == mydata[1][i.toString()][k]) {
       marks = marks + 5; //suma puntaje
-     // cambiando la variable de color a verde debido a que es correcta
+      // cambiando la variable de color a verde debido a que es correcta
       colortoshow = right;
     } else {
       // de lo contrario no suma puntos y indica la variable roja
@@ -195,7 +202,7 @@ class _quizpageState extends State<quizpage> {
           style: const TextStyle(
             color: Colors.white,
             fontFamily: "Alike",
-            fontSize: 16.0,
+            fontSize: 18.0,
           ),
           maxLines: 1,
         ),
@@ -220,42 +227,64 @@ class _quizpageState extends State<quizpage> {
         return shouldPop;
       },
       child: Scaffold(
+        backgroundColor: Colors.green.shade400,
+        //backgroundColor: Colors.amber.shade200,
         body: Column(
           children: <Widget>[
             Expanded(
-              flex: 3,
+              flex: 4,
               child: Container(
-                padding: EdgeInsets.all(15.0),
-                alignment: Alignment.bottomLeft,
+                padding: const EdgeInsets.all(25.0),
+                margin: const EdgeInsets.all(40.0),
+                decoration: BoxDecoration(
+                  color: Colors.amber.shade400,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(25.0),
+                ),
+                alignment: Alignment.center,
                 child: Text(
                   mydata[0][i.toString()],
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
-                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                    fontSize: 24.0,
                     fontFamily: "Quando",
                   ),
                 ),
               ),
             ),
-            Expanded(
-                flex: 6,
-                child: AbsorbPointer(
-                  absorbing: disableAnswer,
-                    child: Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        choicebutton('a'),
-                        choicebutton('b'),
-                        choicebutton('c'),
-                        choicebutton('d'),
-                      ],
-                    ),
+            Expanded(//REPRESENTA LAS PREGUNTAS
+              flex: 6,
+              child: AbsorbPointer(
+                absorbing: disableAnswer,
+                child: Container(
+                  height: MediaQuery.of(context).size.height - 105.0,
+                  padding: const EdgeInsets.all(25.0),
+                  margin: const EdgeInsets.all(25.0),
+                  decoration: BoxDecoration(
+                    color: Colors.amber.shade400,
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      choicebutton('a'),
+                      choicebutton('b'),
+                      choicebutton('c'),
+                      choicebutton('d'),
+                    ],
                   ),
                 ),
               ),
-            Expanded(
+            ),
+            Expanded(//REPRESENTA EL TEMPORIZADOR
               flex: 1,
               child: Container(
+                padding: const EdgeInsets.all(10.0),
+                decoration:
+                    const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
                 alignment: Alignment.topCenter,
                 child: Center(
                   child: Text(

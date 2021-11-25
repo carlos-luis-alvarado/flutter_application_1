@@ -1,30 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/src/data/estado_global/session_controller.dart';
 import 'package:flutter_application_1/src/navigation/routes.dart';
-import 'package:flutter_application_1/src/pages/Inicio_juego.dart';
-import 'package:flutter_application_1/src/transiciones/fade_transition.dart';
+import 'package:flutter_application_1/src/pages/register/email_validator.dart';
+import 'package:flutter_application_1/src/pages/register/login_controller.dart';
+import 'package:flutter_application_1/src/pages/register/send_login_form.dart';
+import 'package:flutter_application_1/src/widgets/custom_input_field.dart';
+import 'package:flutter_meedu/meedu.dart';
+import 'package:flutter_meedu/state.dart';
 import 'package:sign_button/sign_button.dart';
 import 'package:flutter_meedu/router.dart' as router;
 
-class LoginPage extends StatefulWidget {
-  //const LoginPage({Key? key}): super(key:key);
-  static String id = 'login_page';
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
+final loginProvider= SimpleProvider(
+  (_)=> LoginController(sessionProvider.read),
+);
 
-class _LoginPageState extends State<LoginPage> {
+class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}): super(key:key);
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          backgroundColor: Colors.amber.shade300, //COLOR DE FONDO
-          body: Center(
-            child: Column(
-              children: [
-                const Flexible(
-                  //se define el logo
-                  child: Image(
-                    image: AssetImage(
+
+    return ProviderListener<LoginController>(
+      provider: loginProvider,
+      builder: (_,controller){
+        return SafeArea(
+          child: Scaffold(
+            backgroundColor: Colors.amber.shade300, //COLOR DE FONDO
+            body: Center(
+            child:GestureDetector(
+              onTap: ()=>FocusScope.of(context).unfocus(),
+              child:Container(
+                color: Colors.transparent,
+                width: double.infinity,
+                padding: const EdgeInsets.all(15),
+                child:Form(
+                  key:controller.formKey,
+                  child: Column(
+                  children: [
+                    const Flexible(//se define el logo
+                      child: Image(
+                      image: AssetImage(
                       'images/crearlogo.png',
                     ),
                     width: 150.0,
@@ -46,11 +61,38 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 10.0,
                 ),
-                _userTextField(), //correo electronico
+                CustomInputField(
+                    label1: 'ejemplo@correo.com',
+                    label2: 'Correo electrónico',
+                    inputType: TextInputType.emailAddress,
+                    incono: const Icon(Icons.email),
+                    onChanged: controller.onEmailChanged,
+                    validator: (text){
+                      if(isValidEmail(text!)){
+                        return null;
+                      }
+                      return "Invalid email";
+                    },
+                ),
+
                 const SizedBox(
                   height: 20.0,
                 ),
-                _passwordTextField(), //contaseña
+                CustomInputField(
+                    label1: 'Contraseña',
+                    label2: 'Contraseña',
+                    inputType: TextInputType.emailAddress,
+                    incono: const Icon(Icons.lock_outline),
+                    onChanged: controller.onPasswordChanged,
+                    isPassword: true,
+                    validator: (text){
+                      if(text!.trim().length>=6){
+                        return null;
+                      }
+                      return"Invalid pasword";
+                    },
+                ),
+                
                 const SizedBox(
                   height: 25.0,
                 ),
@@ -65,56 +107,23 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const Text('Aún no esta Registrado?'),
                 _buttonRegister(), //boton ingresar
-              ],
-            ),
-          )),
-    );
-  }
-
-  Widget _userTextField() {
-    return StreamBuilder(
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-      return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: TextField(
-          keyboardType: TextInputType.emailAddress,
-          decoration: const InputDecoration(
-              icon: Icon(Icons.email),
-              hintText: 'ejemplo@correo.com',
-              labelText: 'Correo electrónico'),
-          onChanged: (value) {},
-        ),
+                ],
+              ),
+            )),
+            ) ,
+          ) ,
+        )
+        
       );
-    });
-  }
-
-  Widget _passwordTextField() {
-    return StreamBuilder(
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-      return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: TextField(
-          keyboardType: TextInputType.emailAddress,
-          obscureText: true,
-          decoration: const InputDecoration(
-              icon: Icon(Icons.lock_outline),
-              hintText: 'Contraseña',
-              labelText: 'Contraseña'),
-          onChanged: (value) {},
-        ),
-      );
-    });
-  }
+    },
+  );
+}
 
   Widget _buttonLogin() {
     return StreamBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot) {
       return ElevatedButton.icon(
-          onPressed: () {
-            Navigator.of(context).push(
-              Fade_Transition(InicioJuego()),
-            );
-          },
+          onPressed: ()=> sendLoginForm(context),
           icon: const Icon(
             Icons.input_outlined,
           ),
@@ -132,17 +141,12 @@ class _LoginPageState extends State<LoginPage> {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
       return ElevatedButton.icon(
           onPressed: () =>router.pushNamed(Routes.REGISTER),
-            
-           /* Navigator.of(context).push(
-              Fade_Transition(RegistroPage()),
-            );
-          },*/
           icon: const Icon(
             Icons.app_registration,
           ),
           label: const Text('Registrarse'),
           style: ElevatedButton.styleFrom(
-              fixedSize: Size(200, 30),
+              fixedSize: const Size(200, 30),
               primary: Colors.green.shade500,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50))));
@@ -155,7 +159,6 @@ class _LoginPageState extends State<LoginPage> {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          //IconButton(onPressed: () {}, icon: Icon(Icons.facebook)),
           SignInButton.mini(
             buttonType: ButtonType.facebook,
             onPressed: () {},
